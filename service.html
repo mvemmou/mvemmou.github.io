@@ -5,31 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Service – Marina Vemmou</title>
 <meta name="description" content="Service and community involvement.">
+<link rel="canonical" href="https://mvemmou.github.io/service.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Service – Marina Vemmou">
+<meta property="og:description" content="Service and community involvement.">
+<meta property="og:image" content="https://sites.gatech.edu/marinavemmou/files/2022/10/cropped-cropped-cropped-cropped-personal1-1.jpg">
+<meta property="og:url" content="https://mvemmou.github.io/service.html">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Service – Marina Vemmou">
+<meta name="twitter:description" content="Service and community involvement.">
+<meta name="twitter:image" content="https://sites.gatech.edu/marinavemmou/files/2022/10/cropped-cropped-cropped-cropped-personal1-1.jpg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --accent: #4f8a3d;
-  --accent-dark-mode: #86bf72;
-}
-html[data-theme="dark"]{
-  --bg: #14171a;
-  --panel: #1a1e21;
-  --line: #262b2f;
-  --text: #e9e8e3;
-  --text-dim: #92978e;
-  --accent-cur: var(--accent-dark-mode);
-  --accent-soft: #263626;
+  --accent-light: #3f7a37;
+  --accent-dark: #86bf72;
 }
 html[data-theme="light"]{
-  --bg: #faf9f5;
-  --panel: #f2f1ea;
-  --line: #e3e1d6;
-  --text: #1d1f1a;
-  --text-dim: #62675c;
-  --accent-cur: var(--accent);
-  --accent-soft: #e4ede0;
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-dim: #63665f;
+  --line: #e6e5e0;
+  --accent: var(--accent-light);
+}
+html[data-theme="dark"]{
+  --bg: #15171a;
+  --text: #e7e5e0;
+  --text-dim: #9a9d97;
+  --line: #2a2d2f;
+  --accent: var(--accent-dark);
 }
 *{ box-sizing: border-box; }
 html{ scroll-behavior: smooth; }
@@ -37,170 +46,143 @@ body{
   margin:0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', sans-serif;
-  line-height:1.65;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 15.5px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  transition: background .2s ease, color .2s ease;
 }
-::selection{ background: var(--accent-soft); color: var(--text); }
-a{ color: var(--accent-cur); text-decoration:none; border-bottom:1px solid transparent; transition: border-color .15s ease; }
-a:hover{ border-bottom-color: var(--accent-cur); }
-:focus-visible{ outline: 2px solid var(--accent-cur); outline-offset: 3px; }
-h1,h2,h3{ font-family:'Newsreader', serif; font-weight:500; margin:0; }
-.eyebrow{
-  font-family:'IBM Plex Mono', monospace;
-  font-size:.72rem;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  color: var(--accent-cur);
-}
-img{ max-width:100%; display:block; border-radius: 8px; border: 1px solid var(--line); }
+a{ color: var(--accent); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 2px; }
+a:hover{ text-decoration-color: var(--accent); }
+:focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+em{ color: var(--text); }
+h1,h2,h3{ font-family: 'Newsreader', serif; font-weight: 500; margin: 0; }
+img{ max-width: 100%; display:block; }
 
-/* ===== shell + spine ===== */
-.shell{ max-width: 780px; margin: 0 auto; padding: 0 28px 60px; position: relative; }
-.spine{ position:absolute; left: -2px; top: 0; bottom: 0; width: 1px; background: var(--line); }
-.spine::before{
-  content:''; position:absolute; left:0; top:0; width:1px; height: 0%;
-  background: var(--accent-cur); animation: draw 1.4s ease forwards .15s;
+.layout{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 56px;
+  align-items: start;
 }
-@keyframes draw{ to{ height: 100%; } }
-@media (prefers-reduced-motion: reduce){ .spine::before{ animation:none; height:100%; } }
-.node{ position:absolute; left:-6px; width:11px; height:11px; border-radius:50%; background: var(--bg); border: 1px solid var(--accent-cur); }
-@media (max-width: 620px){ .spine, .node{ display:none; } }
+@media (max-width: 760px){
+  .layout{ grid-template-columns: 1fr; gap: 32px; padding-top: 32px; }
+}
 
-/* ===== header / nav ===== */
-header.top{
-  max-width: 780px; margin: 0 auto; padding: 20px 28px;
-  display:flex; justify-content:space-between; align-items:center; gap: 12px; flex-wrap: wrap;
+/* ===== sidebar ===== */
+.sidebar{ position: sticky; top: 48px; }
+@media (max-width: 760px){ .sidebar{ position: static; } }
+.sidebar img.avatar{
+  width: 140px; height: 140px; border-radius: 6px; object-fit: cover;
+  border: 1px solid var(--line); margin-bottom: 18px;
 }
-nav.top-links{ display:flex; gap: 18px; align-items:center; font-family:'IBM Plex Mono', monospace; font-size: .76rem; flex-wrap: wrap; }
-nav.top-links a{ color: var(--text-dim); border-bottom:none; }
-nav.top-links a:hover, nav.top-links a.active{ color: var(--accent-cur); }
+.sidebar h1{ font-size: 1.35rem; line-height: 1.25; }
+.sidebar .role{ margin-top: 6px; font-size: .88rem; color: var(--text-dim); }
+.sidebar .follow{ margin-top: 20px; font-size: .84rem; }
+.sidebar .follow .label{ font-family:'IBM Plex Mono', monospace; font-size:.7rem; letter-spacing:.08em; text-transform: uppercase; color: var(--text-dim); display:block; margin-bottom: 8px; }
+.sidebar .follow a{ display:block; margin-bottom: 5px; }
+.sidebar .jobmarket{
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);
+  font-size: .84rem; color: var(--text-dim);
+}
+.sidebar .jobmarket strong{ color: var(--accent); font-weight:600; }
+.sidebar nav{ margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); font-size: .87rem; }
+.sidebar nav a{
+  display:block; margin-bottom: 8px; text-decoration:none; color: var(--text-dim);
+}
+.sidebar nav a:hover, .sidebar nav a.active{ color: var(--accent); }
 .theme-toggle{
-  background: none; border: 1px solid var(--line); color: var(--text-dim); border-radius: 999px;
-  width: 30px; height: 30px; display:flex; align-items:center; justify-content:center; cursor: pointer; font-size: .85rem;
+  margin-top: 20px; background:none; border: 1px solid var(--line); color: var(--text-dim);
+  border-radius: 999px; width: 28px; height: 28px; display:flex; align-items:center; justify-content:center;
+  cursor: pointer; font-size: .8rem;
 }
-.theme-toggle:hover{ color: var(--accent-cur); border-color: var(--accent-cur); }
+.theme-toggle:hover{ color: var(--accent); border-color: var(--accent); }
 
-/* ===== job market banner ===== */
-.banner{ margin: 22px auto 0; max-width: 780px; padding: 0 28px; }
-.banner-inner{
-  background: var(--accent-soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px 18px;
-  font-size: .88rem; display:flex; gap: 10px; align-items:baseline; flex-wrap: wrap;
-}
-.banner-inner strong{ color: var(--accent-cur); }
+/* ===== main content ===== */
+main h1.page-title{ font-size: 1.9rem; margin-bottom: 20px; }
+main section{ margin-bottom: 40px; }
+main section:last-child{ margin-bottom: 0; }
+main h2{ font-size: 1.05rem; font-weight: 600; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: .04em; color: var(--text-dim); margin-bottom: 14px; }
+main p{ margin: 0 0 14px; max-width: 66ch; }
+main p:last-child{ margin-bottom: 0; }
 
-/* ===== page header ===== */
-.page-head{ padding: 40px 0 8px; position:relative; }
-.page-head h1{ font-size: 2.1rem; letter-spacing: -.01em; }
-.page-head .role{ margin-top: 8px; color: var(--text-dim); font-size: 1rem; }
+.proj{ margin-bottom: 34px; }
+.proj:last-child{ margin-bottom: 0; }
+.proj h3{ font-size: 1.08rem; font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: 4px; }
+.proj .venue-tag{ font-size: .78rem; color: var(--text-dim); font-family:'IBM Plex Mono', monospace; }
+.proj p{ margin-top: 8px; font-size: .96rem; }
+.proj .fig{ margin: 12px 0; max-width: 480px; }
+.proj .fig img{ border: 1px solid var(--line); border-radius: 4px; }
+.proj .pub{ font-size: .86rem; color: var(--text-dim); margin-top: 8px; padding-left: 14px; border-left: 2px solid var(--line); }
+.proj .pub + .pub{ margin-top: 6px; }
+.proj .pub .title{ color: var(--text); }
 
-/* ===== hero (home page) ===== */
-.hero{ padding: 40px 0 8px; position:relative; }
-.hero-top{ display:flex; gap: 26px; align-items:center; flex-wrap: wrap; }
-.avatar{
-  width: 96px; height: 96px; border-radius: 50%; object-fit: cover;
-  border: 1px solid var(--line); box-shadow: 0 0 0 5px var(--accent-soft);
-}
-.hero h1{ font-size: 2.5rem; line-height:1.15; letter-spacing: -.01em; }
-.hero .role{ margin-top: 8px; color: var(--text-dim); font-size: 1.02rem; }
-.hero .lede{ margin-top: 24px; max-width: 60ch; font-size: 1.02rem; color: var(--text); }
-.hero .voice{
-  margin-top: 16px; max-width: 60ch; font-size: .97rem; color: var(--text-dim); font-style: italic;
-  border-left: 2px solid var(--accent-soft); padding-left: 16px;
-}
-.links{ margin-top: 26px; display:flex; flex-wrap:wrap; gap: 10px 22px; font-family:'IBM Plex Mono', monospace; font-size: .82rem; }
+dl.list{ margin: 0; }
+dl.list .row{ display:grid; grid-template-columns: 130px 1fr; gap: 4px 16px; margin-bottom: 18px; font-size: .95rem; }
+dl.list .row:last-child{ margin-bottom: 0; }
+dl.list .when{ color: var(--text-dim); font-family:'IBM Plex Mono', monospace; font-size: .78rem; padding-top: 3px; }
+dl.list .what strong{ font-weight: 600; }
+dl.list .what .sub{ color: var(--text-dim); font-size: .87rem; }
+dl.list .what p{ margin: 6px 0 0; font-size: .93rem; }
+@media (max-width: 560px){ dl.list .row{ grid-template-columns: 1fr; } }
 
-/* ===== sections within a page ===== */
-section{ padding: 40px 0; position:relative; border-top: 1px solid var(--line); }
-section:first-of-type{ border-top: none; }
-section .node{ top: 40px; }
-section h2{ font-size: 1.5rem; margin-bottom: 22px; }
-section .sec-note{ color: var(--text-dim); font-size: .92rem; margin: -12px 0 24px; max-width: 58ch; }
+.honor{ margin-bottom: 20px; font-size: .95rem; }
+.honor:last-child{ margin-bottom: 0; }
+.honor .name{ font-weight: 600; }
+.honor .venue{ color: var(--text-dim); font-size: .87rem; }
+.honor p{ margin-top: 6px; font-size: .92rem; }
+.honor .fig{ margin-top: 10px; max-width: 260px; }
+.honor .fig img{ border: 1px solid var(--line); border-radius: 4px; }
 
-.research-item{ margin-bottom: 40px; }
-.research-item:last-child{ margin-bottom: 0; }
-.research-item h3{ font-size: 1.1rem; font-weight:500; margin-bottom: 8px; }
-.research-item .tag{ font-family:'IBM Plex Mono', monospace; font-size:.7rem; color: var(--text-dim); }
-.research-item p{ color: var(--text); font-size: .96rem; margin-top: 8px; }
-.research-item .fig{ margin-top: 14px; }
-.stat{ color: var(--accent-cur); font-weight:600; }
-.research-item .cite{
-  margin-top: 14px; padding: 10px 14px; background: var(--panel); border: 1px solid var(--line);
-  border-radius: 6px; font-size: .84rem;
-}
-.research-item .cite + .cite{ margin-top: 8px; }
-.research-item .cite .venue{ color: var(--text-dim); font-family:'IBM Plex Mono', monospace; font-size: .74rem; margin-top: 3px; }
-.research-item .cite .status{
-  display:inline-block; margin-left: 8px; font-family:'IBM Plex Mono', monospace; font-size: .66rem;
-  color: var(--accent-cur); border: 1px solid var(--accent-cur); border-radius: 4px; padding: 1px 6px; vertical-align: middle;
-}
+.img-pair{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+.img-pair img{ max-width: 200px; border: 1px solid var(--line); border-radius: 4px; }
 
-.entry{ display:grid; grid-template-columns: 165px 1fr; gap: 4px 18px; margin-bottom: 22px; }
-.entry:last-child{ margin-bottom:0; }
-.entry .when{ font-family:'IBM Plex Mono', monospace; font-size: .76rem; color: var(--text-dim); padding-top: 3px; }
-.entry .what strong{ font-weight:600; }
-.entry .what .sub{ color: var(--text-dim); font-size: .88rem; }
-.entry .what p{ margin: 6px 0 0; color: var(--text); font-size: .92rem; }
-@media (max-width: 620px){ .entry{ grid-template-columns: 1fr; } }
+.skills-line{ font-size: .95rem; max-width: 66ch; }
+.skills-line .cat{ font-weight: 600; }
 
-.award{ margin-bottom: 24px; }
-.award:last-child{ margin-bottom:0; }
-.award h3{ font-size: 1rem; font-weight:600; }
-.award .venue{ color: var(--text-dim); font-size: .86rem; margin-top: 2px; }
-.award p{ color: var(--text); font-size: .92rem; margin-top: 8px; }
-.award .fig{ margin-top: 12px; max-width: 280px; }
+.interests p{ font-size: .96rem; }
 
-.img-row{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
-.img-row img{ max-width: 220px; }
-
-.chip-row{ display:flex; flex-wrap:wrap; gap: 8px; }
-.chip{
-  font-family:'IBM Plex Mono', monospace; font-size: .76rem; color: var(--text-dim);
-  border: 1px solid var(--line); background: var(--panel); border-radius: 5px; padding: 5px 10px;
-}
-
-.interests p{ color:var(--text); font-size:.96rem; margin-bottom:14px; }
-.interests p:last-child{ margin-bottom:0; }
-
-footer{ padding: 40px 0 60px; color: var(--text-dim); font-size: .86rem; border-top: 1px solid var(--line); }
-footer a{ color: var(--text-dim); }
-footer a:hover{ color: var(--accent-cur); border-color: var(--accent-cur); }
+footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .82rem; color: var(--text-dim); }
 
 </style>
 </head>
 <body>
-<header class="top">
-  <a href="index.html" class="eyebrow" style="border-bottom:none;">Marina Vemmou</a>
-  <nav class="top-links">
+<div class="layout">
+<aside class="sidebar">
+  <img class="avatar" src="https://sites.gatech.edu/marinavemmou/files/2022/10/cropped-cropped-cropped-cropped-personal1-1.jpg" alt="Portrait of Marina Vemmou">
+  <h1>Marina Vemmou</h1>
+  <p class="role">PhD, Computer Architecture<br>Georgia Institute of Technology</p>
+
+  <div class="follow">
+    <span class="label">Follow</span>
+    <a href="mailto:mvemmou@gatech.edu">Email</a>
+    <a href="https://www.linkedin.com/in/marina-vemmou/">LinkedIn</a>
+    <a href="https://sites.gatech.edu/marinavemmou/files/2025/09/cv_analyical_rising_stars.pdf">CV</a>
+  </div>
+
+  <div class="jobmarket">
+    <strong>On the job market</strong> &mdash; open to research scientist, postdoc, and faculty positions for 2026&ndash;27.
+  </div>
+
+  <nav>
     <a href="index.html">About</a>
     <a href="research.html">Research</a>
     <a href="experience.html">Experience</a>
     <a href="service.html" class="active">Service</a>
     <a href="awards.html">Awards</a>
     <a href="interests.html">Interests</a>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">&#9680;</button>
   </nav>
-</header>
 
-<div class="banner">
-  <div class="banner-inner">
-    <strong>On the job market.</strong>
-    <span>Open to research scientist, postdoc, and faculty positions for 2026&ndash;27 &mdash; <a href="mailto:mvemmou@gatech.edu">get in touch</a>.</span>
-  </div>
-</div>
-<div class="shell">
-<div class="spine"></div>
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">&#9680;</button>
+</aside>
+<main>
+<h1 class="page-title">Service</h1>
 
-<section class="page-head" style="border-top:none;">
-  <div class="node" style="top:40px;"></div>
-  <span class="eyebrow">Service</span>
-  <h1 style="margin-top:10px;">Community &amp; peer review</h1>
-</section>
-
-<section style="border-top:none; padding-top:0;">
-  <div class="award">
-    <h3>Graduate Student Association Board, School of Computer Science</h3>
+<section>
+  <div class="honor">
+    <div class="name">Graduate Student Association Board, School of Computer Science</div>
     <div class="venue">2023 &ndash; 2024 &middot; Georgia Tech</div>
     <p>
       I served as Student &amp; Faculty Affairs Chair. I strongly believe in collective action and cooperation
@@ -211,41 +193,34 @@ footer a:hover{ color: var(--accent-cur); border-color: var(--accent-cur); }
       Fostering solidarity and kinship between students, and cultivating avenues of communication and mutual
       respect with faculty and administration, is paramount.
     </p>
-    <div class="img-row">
+    <div class="img-pair">
       <img src="https://sites.gatech.edu/marinavemmou/files/2024/04/gala_photo_exec_2023-1536x1024-feafa914fe0451ab-1024x683.jpg" alt="SCS Graduate Student Association executive board at a gala">
       <img src="https://sites.gatech.edu/marinavemmou/files/2024/04/Untitled-design-2-e2318e027c86fd6f-683x1024.jpg" alt="SCS Graduate Student Association board photo">
     </div>
   </div>
-  <div class="award">
-    <h3>Faculty Recruitment Committee, School of Computer Science</h3>
+  <div class="honor">
+    <div class="name">Faculty Recruitment Committee, School of Computer Science</div>
     <div class="venue">Spring 2024 &middot; Georgia Tech</div>
   </div>
-  <div class="award">
-    <h3>Association for Graduate Women and Gender Diversity</h3>
+  <div class="honor">
+    <div class="name">Association for Graduate Women and Gender Diversity</div>
     <div class="venue">Summer 2024 &middot; College of Computing, Georgia Tech</div>
   </div>
-  <div class="award">
-    <h3>Shadow Program Committee</h3>
+  <div class="honor">
+    <div class="name">Shadow Program Committee</div>
     <div class="venue">EuroSys 2023</div>
     <p>Knowledge is built on the shoulders of countless researchers. Volunteering to review the work of my peers and provide feedback is an opportunity I cherish.</p>
   </div>
 </section>
 
+</main>
 </div>
 
-<footer class="shell">
-  &copy; <span id="year"></span> Marina Vemmou.
-</footer>
-
 <script>
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
 const root = document.documentElement;
 const toggle = document.getElementById('theme-toggle');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 root.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-
 if (toggle) {
   toggle.addEventListener('click', () => {
     const current = root.getAttribute('data-theme');

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mvemmou.github.io/sitemap.xml
