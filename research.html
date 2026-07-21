@@ -69,7 +69,6 @@ img{ max-width: 100%; display:block; }
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
 }
 .brand{ display:flex; align-items:center; gap: 10px; text-decoration:none; flex-shrink: 0; }
-.brand img{ width: 32px; height: 32px; border-radius: 5px; object-fit: cover; border: 1px solid var(--line); }
 .brand span{ font-family:'Newsreader', serif; font-weight: 500; font-size: 1.02rem; color: var(--text); }
 .topnav{ display:flex; align-items:center; gap: 20px; flex-wrap: wrap; }
 .topnav a{ font-size: .87rem; text-decoration:none; color: var(--text-dim); white-space: nowrap; }
@@ -114,14 +113,23 @@ main h2{ font-size: 1.05rem; font-weight: 600; font-family: 'Inter', sans-serif;
 main p{ margin: 0 0 14px; max-width: 66ch; }
 main p:last-child{ margin-bottom: 0; }
 
-.proj{ margin-bottom: 34px; }
+.proj{
+  margin-bottom: 16px; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px;
+}
 .proj:last-child{ margin-bottom: 0; }
-.proj h3{ font-size: 1.08rem; font-family: 'Inter', sans-serif; font-weight: 600; margin-bottom: 4px; }
-.proj .venue-tag{ font-size: .78rem; color: var(--text-dim); font-family:'IBM Plex Mono', monospace; }
-.proj p{ margin-top: 8px; font-size: .96rem; }
-.proj .fig{ margin: 12px 0; max-width: 480px; }
+.proj summary{ cursor: pointer; list-style: none; }
+.proj summary::-webkit-details-marker{ display: none; }
+.proj-head{ display: flex; align-items: center; gap: 12px; }
+.proj-head h3{ flex: 1; font-size: 1.08rem; font-family: 'Inter', sans-serif; font-weight: 600; }
+.proj .venue-tag{ font-size: .78rem; color: var(--text-dim); font-family:'IBM Plex Mono', monospace; flex-shrink: 0; }
+.proj .chevron{ font-size: .7rem; color: var(--text-dim); flex-shrink: 0; transition: transform .15s ease; }
+.proj[open] .chevron{ transform: rotate(90deg); }
+.proj summary:hover .chevron{ color: var(--accent); }
+.proj-body{ margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.proj-body p{ font-size: .96rem; }
+.proj .fig{ margin: 12px 0 0; max-width: 480px; }
 .proj .fig img{ border: 1px solid var(--line); border-radius: 4px; }
-.proj .pub{ font-size: .86rem; color: var(--text-dim); margin-top: 8px; padding-left: 14px; border-left: 2px solid var(--line); }
+.proj .pub{ font-size: .86rem; color: var(--text-dim); margin-top: 10px; padding-left: 14px; border-left: 2px solid var(--line); }
 .proj .pub + .pub{ margin-top: 6px; }
 .proj .pub .title{ color: var(--text); }
 
@@ -158,7 +166,6 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="index.html">
-      <img src="https://sites.gatech.edu/marinavemmou/files/2022/10/cropped-cropped-cropped-cropped-personal1-1.jpg" alt="Marina Vemmou">
       <span>Marina Vemmou</span>
     </a>
     <nav class="topnav">
@@ -178,80 +185,95 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
 
 <!--
   RECOMMENDATION (remove this comment once addressed):
-  Right now each project is presented as a wall of text with an optional figure below it.
-  A few changes would make this page much easier for a reader (esp. a hiring committee
-  skimming quickly) to parse:
-  1. Lead each project with a one-sentence "so what" in bold before the detailed
-     paragraph — the problem + your contribution + the headline number, e.g.
-     "Repurposes idle cache capacity as miss-handling storage, for up to 1.98x speedup."
-  2. Add a figure to every project, not just two of three — MORIA currently has no
-     diagram. A simple before/after or system diagram per project keeps visual rhythm
-     consistent down the page.
-  3. Consider a short "Research at a glance" strip at the very top of this page (three
-     compact cards: MORIA / Sweeper / COSPlay, each with a 1-line tag + venue), so
-     someone can see your full arc before scrolling into the detailed writeups below.
-  4. Pull the venue/year tag more prominently next to the project title rather than
-     above it in small text, since that's often the first thing a reader scans for.
+  Sections now expand/collapse, showing title, venue, and paper links by default. Two
+  things still worth doing:
+  1. Add a figure to MORIA — it's currently the only project without a diagram in its
+     expanded body, breaking the visual rhythm of the other two.
+  2. Consider leading each expanded paragraph with a one-sentence "so what" in bold —
+     the problem + your contribution + the headline number, e.g. "Repurposes idle cache
+     capacity as miss-handling storage, for up to 1.98x speedup" — before the full
+     explanation, for readers who expand but are still skimming.
 -->
 
 <section>
-  <div class="proj">
-    <span class="venue-tag">MICRO '26</span>
-    <h3>Elastic Miss-Handling for Heterogeneous Memory Systems &mdash; MORIA</h3>
-    <p>
-      Statically sized MSHRs can't adapt to runtime memory-level parallelism demands, so exhausting them stalls
-      the cache and blocks the pipeline &mdash; even while in-cache storage often sits underused. This work repurposes
-      that idle storage into additional miss-handling capacity on demand, adapting to MLP requirements without
-      dedicated hardware, for an average 1.14&times; speedup and up to 1.98&times; for individual applications.
-    </p>
-    <div class="pub">
-      <div class="title">MORIA: Mining the Cache for Miss Parallelism</div>
-      <div>Marina Vemmou, Alexandros Daglis &mdash; 59th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2026</div>
+  <details class="proj">
+    <summary>
+      <div class="proj-head">
+        <h3>Elastic Miss-Handling for Heterogeneous Memory Systems &mdash; MORIA</h3>
+        <span class="venue-tag">MICRO '26</span>
+        <span class="chevron">&#9656;</span>
+      </div>
+      <div class="pub">
+        <div class="title">MORIA: Mining the Cache for Miss Parallelism</div>
+        <div>Marina Vemmou, Alexandros Daglis &mdash; 59th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2026</div>
+      </div>
+    </summary>
+    <div class="proj-body">
+      <p>
+        Statically sized MSHRs can't adapt to runtime memory-level parallelism demands, so exhausting them stalls
+        the cache and blocks the pipeline &mdash; even while in-cache storage often sits underused. This work repurposes
+        that idle storage into additional miss-handling capacity on demand, adapting to MLP requirements without
+        dedicated hardware, for an average 1.14&times; speedup and up to 1.98&times; for individual applications.
+      </p>
     </div>
-  </div>
+  </details>
 
-  <div class="proj">
-    <span class="venue-tag">MICRO '22</span>
-    <h3>Eliminating Network-Induced Memory Bandwidth Waste &mdash; Sweeper</h3>
-    <p>
-      Network buffers placed via DDIO look identical to live data once they're in the last-level cache, so the
-      system writes them back to memory even after the application is done with them &mdash; wasting bandwidth it can't
-      get back. Sweeper pairs a software API for declaring buffer retirement with a hardware cache-line invalidation
-      instruction that discards consumed buffers without a writeback or any change to the memory consistency model,
-      boosting throughput by up to 2.6&times;.
-    </p>
-    <div class="fig">
-      <img src="https://sites.gatech.edu/marinavemmou/files/2025/09/Screenshot-from-2025-09-24-10-53-03-1024x528.png" alt="Sweeper system diagram">
+  <details class="proj">
+    <summary>
+      <div class="proj-head">
+        <h3>Eliminating Network-Induced Memory Bandwidth Waste &mdash; Sweeper</h3>
+        <span class="venue-tag">MICRO '22</span>
+        <span class="chevron">&#9656;</span>
+      </div>
+      <div class="pub">
+        <div class="title"><a href="papers/sweeper_micro22.pdf">Patching up Network Data Leaks with Sweeper</a></div>
+        <div>Marina Vemmou, Albert Cho, Alexandros Daglis &mdash; 55th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2022</div>
+      </div>
+    </summary>
+    <div class="proj-body">
+      <p>
+        Network buffers placed via DDIO look identical to live data once they're in the last-level cache, so the
+        system writes them back to memory even after the application is done with them &mdash; wasting bandwidth it can't
+        get back. Sweeper pairs a software API for declaring buffer retirement with a hardware cache-line invalidation
+        instruction that discards consumed buffers without a writeback or any change to the memory consistency model,
+        boosting throughput by up to 2.6&times;.
+      </p>
+      <div class="fig">
+        <img src="https://sites.gatech.edu/marinavemmou/files/2025/09/Screenshot-from-2025-09-24-10-53-03-1024x528.png" alt="Sweeper system diagram">
+      </div>
     </div>
-    <div class="pub">
-      <div class="title"><a href="papers/sweeper_micro22.pdf">Patching up Network Data Leaks with Sweeper</a></div>
-      <div>Marina Vemmou, Albert Cho, Alexandros Daglis &mdash; 55th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2022</div>
-    </div>
-  </div>
+  </details>
 
-  <div class="proj">
-    <span class="venue-tag">MICRO '21</span>
-    <h3>High-Throughput Synchronous Persistence &mdash; COSPlay</h3>
-    <p>
-      Crash-consistent applications on persistent memory conservatively serialize persist operations, putting PM
-      latency squarely on the critical path &mdash; even though independent tasks often have separate persist contexts
-      that software knows about but has no way to expose to hardware. COSPlay is a three-layer co-design: a
-      coroutine runtime that switches tasks at persist barriers, interface primitives that convey task associations
-      to hardware, and targeted CPU changes that overlap persists across independent tasks while keeping
-      intra-task ordering intact &mdash; up to 7.3&times; higher throughput for high-persist-latency workloads.
-    </p>
-    <div class="fig">
-      <img src="https://sites.gatech.edu/marinavemmou/files/2025/09/Screenshot-from-2025-09-24-11-08-25.png" alt="COSPlay architecture diagram">
+  <details class="proj">
+    <summary>
+      <div class="proj-head">
+        <h3>High-Throughput Synchronous Persistence &mdash; COSPlay</h3>
+        <span class="venue-tag">MICRO '21</span>
+        <span class="chevron">&#9656;</span>
+      </div>
+      <div class="pub">
+        <div class="title"><a href="papers/cosplay_micro21.pdf">COSPlay: Leveraging Task-Level Parallelism for High-Throughput Synchronous Persistence</a></div>
+        <div>Marina Vemmou, Alexandros Daglis &mdash; 54th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2021</div>
+      </div>
+      <div class="pub">
+        <div class="title">High-Throughput Persistence with Coroutines</div>
+        <div>Marina Vemmou, Alexandros Daglis &mdash; 3rd Young Architect Workshop (YArch) @ ASPLOS, 2021</div>
+      </div>
+    </summary>
+    <div class="proj-body">
+      <p>
+        Crash-consistent applications on persistent memory conservatively serialize persist operations, putting PM
+        latency squarely on the critical path &mdash; even though independent tasks often have separate persist contexts
+        that software knows about but has no way to expose to hardware. COSPlay is a three-layer co-design: a
+        coroutine runtime that switches tasks at persist barriers, interface primitives that convey task associations
+        to hardware, and targeted CPU changes that overlap persists across independent tasks while keeping
+        intra-task ordering intact &mdash; up to 7.3&times; higher throughput for high-persist-latency workloads.
+      </p>
+      <div class="fig">
+        <img src="https://sites.gatech.edu/marinavemmou/files/2025/09/Screenshot-from-2025-09-24-11-08-25.png" alt="COSPlay architecture diagram">
+      </div>
     </div>
-    <div class="pub">
-      <div class="title"><a href="papers/cosplay_micro21.pdf">COSPlay: Leveraging Task-Level Parallelism for High-Throughput Synchronous Persistence</a></div>
-      <div>Marina Vemmou, Alexandros Daglis &mdash; 54th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2021</div>
-    </div>
-    <div class="pub">
-      <div class="title">High-Throughput Persistence with Coroutines</div>
-      <div>Marina Vemmou, Alexandros Daglis &mdash; 3rd Young Architect Workshop (YArch) @ ASPLOS, 2021</div>
-    </div>
-  </div>
+  </details>
 </section>
 
 </main>
