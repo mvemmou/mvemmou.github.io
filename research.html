@@ -58,47 +58,53 @@ em{ color: var(--text); }
 h1,h2,h3{ font-family: 'Newsreader', serif; font-weight: 500; margin: 0; }
 img{ max-width: 100%; display:block; }
 
-.layout{
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 48px 24px 80px;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 56px;
-  align-items: start;
+/* ===== topbar ===== */
+.topbar{
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
 }
-@media (max-width: 760px){
-  .layout{ grid-template-columns: 1fr; gap: 32px; padding-top: 32px; }
+.topbar-inner{
+  max-width: 980px; margin: 0 auto; padding: 16px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
 }
-
-/* ===== sidebar ===== */
-.sidebar{ position: sticky; top: 48px; }
-@media (max-width: 760px){ .sidebar{ position: static; } }
-.sidebar img.avatar{
-  width: 140px; height: 140px; border-radius: 6px; object-fit: cover;
-  border: 1px solid var(--line); margin-bottom: 18px;
-}
-.sidebar h1{ font-size: 1.35rem; line-height: 1.25; }
-.sidebar .role{ margin-top: 6px; font-size: .88rem; color: var(--text-dim); }
-.sidebar .follow{ margin-top: 20px; font-size: .84rem; }
-.sidebar .follow .label{ font-family:'IBM Plex Mono', monospace; font-size:.7rem; letter-spacing:.08em; text-transform: uppercase; color: var(--text-dim); display:block; margin-bottom: 8px; }
-.sidebar .follow a{ display:block; margin-bottom: 5px; }
-.sidebar .jobmarket{
-  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);
-  font-size: .84rem; color: var(--text-dim);
-}
-.sidebar .jobmarket strong{ color: var(--accent); font-weight:600; }
-.sidebar nav{ margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); font-size: .87rem; }
-.sidebar nav a{
-  display:block; margin-bottom: 8px; text-decoration:none; color: var(--text-dim);
-}
-.sidebar nav a:hover, .sidebar nav a.active{ color: var(--accent); }
+.brand{ display:flex; align-items:center; gap: 10px; text-decoration:none; flex-shrink: 0; }
+.brand img{ width: 32px; height: 32px; border-radius: 5px; object-fit: cover; border: 1px solid var(--line); }
+.brand span{ font-family:'Newsreader', serif; font-weight: 500; font-size: 1.02rem; color: var(--text); }
+.topnav{ display:flex; align-items:center; gap: 20px; flex-wrap: wrap; }
+.topnav a{ font-size: .87rem; text-decoration:none; color: var(--text-dim); white-space: nowrap; }
+.topnav a:hover, .topnav a.active{ color: var(--accent); }
 .theme-toggle{
-  margin-top: 20px; background:none; border: 1px solid var(--line); color: var(--text-dim);
+  background:none; border: 1px solid var(--line); color: var(--text-dim);
   border-radius: 999px; width: 28px; height: 28px; display:flex; align-items:center; justify-content:center;
-  cursor: pointer; font-size: .8rem;
+  cursor: pointer; font-size: .8rem; flex-shrink: 0;
 }
 .theme-toggle:hover{ color: var(--accent); border-color: var(--accent); }
+@media (max-width: 700px){
+  .topbar-inner{ flex-wrap: wrap; padding: 14px 20px; }
+  .topnav{ gap: 14px 16px; order: 3; width: 100%; }
+}
+
+.wrap{ max-width: 980px; margin: 0 auto; padding: 40px 24px 80px; }
+
+/* ===== job market banner ===== */
+.jobmarket-banner{
+  display:flex; align-items:center; gap: 8px; flex-wrap: wrap;
+  background: var(--accent); color: var(--bg);
+  border-radius: 8px; padding: 14px 20px; margin-bottom: 36px;
+  font-size: .92rem;
+}
+.jobmarket-banner strong{ font-weight: 600; }
+.jobmarket-banner a{ color: var(--bg); text-decoration-color: rgba(255,255,255,.55); font-weight: 600; }
+
+/* ===== hero (about page) ===== */
+.hero{ display:flex; gap: 26px; align-items:flex-start; margin-bottom: 36px; flex-wrap: wrap; }
+.hero img.avatar{ width: 128px; height: 128px; border-radius: 8px; object-fit: cover; border: 1px solid var(--line); flex-shrink: 0; }
+.hero h1{ font-size: 1.9rem; }
+.hero .role{ margin-top: 6px; font-size: .92rem; color: var(--text-dim); }
+.hero .follow{ margin-top: 14px; font-size: .88rem; display:flex; gap: 18px; flex-wrap: wrap; }
+
+footer .contact a{ margin-right: 14px; }
 
 /* ===== main content ===== */
 main h1.page-title{ font-size: 1.9rem; margin-bottom: 20px; }
@@ -149,36 +155,44 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
 </style>
 </head>
 <body>
-<div class="layout">
-<aside class="sidebar">
-  <img class="avatar" src="https://sites.gatech.edu/marinavemmou/files/2022/10/cropped-cropped-cropped-cropped-personal1-1.jpg" alt="Portrait of Marina Vemmou">
-  <h1>Marina Vemmou</h1>
-  <p class="role">PhD, Computer Architecture<br>Georgia Institute of Technology</p>
-
-  <div class="follow">
-    <span class="label">Follow</span>
-    <a href="mailto:mvemmou@gatech.edu">Email</a>
-    <a href="https://www.linkedin.com/in/marina-vemmou/">LinkedIn</a>
-    <a href="https://sites.gatech.edu/marinavemmou/files/2025/09/cv_analyical_rising_stars.pdf">CV</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <img src="https://sites.gatech.edu/marinavemmou/files/2022/10/cropped-cropped-cropped-cropped-personal1-1.jpg" alt="Marina Vemmou">
+      <span>Marina Vemmou</span>
+    </a>
+    <nav class="topnav">
+      <a href="index.html">About</a>
+      <a href="research.html" class="active">Research</a>
+      <a href="experience.html">Experience</a>
+      <a href="service.html">Service</a>
+      <a href="awards.html">Awards</a>
+      <a href="interests.html">Outside the Lab</a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">&#9680;</button>
   </div>
-
-  <div class="jobmarket">
-    <strong>On the job market</strong> &mdash; open to research scientist, postdoc, and faculty positions for 2026&ndash;27.
-  </div>
-
-  <nav>
-    <a href="index.html">About</a>
-    <a href="research.html" class="active">Research</a>
-    <a href="experience.html">Experience</a>
-    <a href="service.html">Service</a>
-    <a href="awards.html">Awards</a>
-    <a href="interests.html">Interests</a>
-  </nav>
-
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode" title="Toggle theme">&#9680;</button>
-</aside>
+</header>
+<div class="wrap">
 <main>
 <h1 class="page-title">Research</h1>
+
+<!--
+  RECOMMENDATION (remove this comment once addressed):
+  Right now each project is presented as a wall of text with an optional figure below it.
+  A few changes would make this page much easier for a reader (esp. a hiring committee
+  skimming quickly) to parse:
+  1. Lead each project with a one-sentence "so what" in bold before the detailed
+     paragraph — the problem + your contribution + the headline number, e.g.
+     "Repurposes idle cache capacity as miss-handling storage, for up to 1.98x speedup."
+  2. Add a figure to every project, not just two of three — MORIA currently has no
+     diagram. A simple before/after or system diagram per project keeps visual rhythm
+     consistent down the page.
+  3. Consider a short "Research at a glance" strip at the very top of this page (three
+     compact cards: MORIA / Sweeper / COSPlay, each with a 1-line tag + venue), so
+     someone can see your full arc before scrolling into the detailed writeups below.
+  4. Pull the venue/year tag more prominently next to the project title rather than
+     above it in small text, since that's often the first thing a reader scans for.
+-->
 
 <section>
   <div class="proj">
@@ -210,7 +224,7 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
       <img src="https://sites.gatech.edu/marinavemmou/files/2025/09/Screenshot-from-2025-09-24-10-53-03-1024x528.png" alt="Sweeper system diagram">
     </div>
     <div class="pub">
-      <div class="title">Patching up Network Data Leaks with Sweeper</div>
+      <div class="title"><a href="papers/sweeper_micro22.pdf">Patching up Network Data Leaks with Sweeper</a></div>
       <div>Marina Vemmou, Albert Cho, Alexandros Daglis &mdash; 55th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2022</div>
     </div>
   </div>
@@ -230,7 +244,7 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
       <img src="https://sites.gatech.edu/marinavemmou/files/2025/09/Screenshot-from-2025-09-24-11-08-25.png" alt="COSPlay architecture diagram">
     </div>
     <div class="pub">
-      <div class="title">COSPlay: Leveraging Task-Level Parallelism for High-Throughput Synchronous Persistence</div>
+      <div class="title"><a href="papers/cosplay_micro21.pdf">COSPlay: Leveraging Task-Level Parallelism for High-Throughput Synchronous Persistence</a></div>
       <div>Marina Vemmou, Alexandros Daglis &mdash; 54th IEEE/ACM International Symposium on Microarchitecture (MICRO), 2021</div>
     </div>
     <div class="pub">
@@ -241,6 +255,13 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
 </section>
 
 </main>
+<footer>
+  <div class="contact">
+    <a href="mailto:mvemmou@gatech.edu">mvemmou@gatech.edu</a>
+    <a href="https://www.linkedin.com/in/marina-vemmou/">LinkedIn</a>
+    <a href="https://sites.gatech.edu/marinavemmou/files/2025/09/cv_analyical_rising_stars.pdf">CV</a>
+  </div>
+</footer>
 </div>
 
 <script>
