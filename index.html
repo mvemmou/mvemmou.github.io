@@ -104,6 +104,10 @@ img{ max-width: 100%; display:block; }
 .profile-card .role{ margin-top: 6px; font-size: .88rem; color: var(--text-dim); }
 .profile-card .follow{ margin-top: 16px; font-size: .88rem; display:flex; flex-direction:column; gap: 6px; }
 .about-main section:first-child{ margin-top: 0; }
+.interests-line{ margin-bottom: 28px; font-size: .92rem; }
+.interests-line .label{ font-family:'IBM Plex Mono', monospace; font-size:.7rem; letter-spacing:.08em; text-transform: uppercase; color: var(--text-dim); display:block; margin-bottom: 8px; }
+.interests-line strong{ font-weight: 600; }
+.interests-line .sep{ color: var(--text-dim); margin: 0 2px; }
 
 footer .contact a{ margin-right: 14px; }
 
@@ -204,7 +208,7 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
 <main>
 
 <div class="jobmarket-banner">
-  <strong>On the job market</strong> &mdash; open to research scientist, postdoc, and faculty positions for 2026&ndash;27.
+  <strong>On the job market</strong> &mdash; open to postdoc, faculty  and  research scientist positions for 2026&ndash;27.
   <a href="mailto:mvemmou@gatech.edu">Get in touch &rarr;</a>
 </div>
 
@@ -237,6 +241,11 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
     export as a single wide PNG/SVG and drop it in as an <img> here.
   -->
 
+  <div class="interests-line">
+    <span class="label">Research Interests</span>
+    <strong>Computer Architecture</strong><span class="sep">&middot;</span><strong>Memory Systems</strong><span class="sep">&middot;</span><strong>Datacenter Networking</strong><span class="sep">&middot;</span><strong>Persistent Memory</strong>
+  </div>
+
   <section>
     <p>
       I'm a computer architect who works at the boundary of hardware and systems software &mdash; designing more
@@ -245,7 +254,7 @@ footer{ margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--line); 
       I enjoy working at the intersection of microarchitecrure and software to accelerate networking stacks and latency-sensitive services and enable massive memory-level parallelism. See <a href="research.html">Research</a> for more of my work.
     </p>
     <p>
-      I completed my PhD at the School of Computer Science at Georgia Tech under the guidance of Associate Professor <a href="https://adaglis.github.io/">Alexandros Daglis</a>.
+      I completed my PhD at the <a href="https://www.scs.gatech.edu/">School of Computer Science at Georgia Tech</a> under the guidance of Associate Professor <a href="https://adaglis.github.io/">Alexandros Daglis</a>.
       </p>
     <p>
 
